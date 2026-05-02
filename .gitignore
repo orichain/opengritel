@@ -1,0 +1,12 @@
+database/*
+!database/.gitkeep
+obj/
+opengritel
+opengritel.core
+clang
+clang++
+.cache/
+.lua.
+compile_commands.json
+clangd.core
+fc-cache.core
