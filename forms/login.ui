@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<interface>
+  <object class="GtkApplicationWindow" id="window">
+    <property name="title">Login System</property>
+    <!-- Ukuran default jika tidak dalam mode fullscreen -->
+    <property name="default-width">400</property>
+    <property name="default-height">300</property>
+    
+    <child>
+      <object class="GtkBox" id="main_container">
+        <property name="orientation">vertical</property>
+        <property name="spacing">20</property>
+        <!-- Properti di bawah ini menjaga form tetap di tengah layar -->
+        <property name="halign">center</property>
+        <property name="valign">center</property>
+
+        <child>
+          <object class="GtkGrid" id="form_grid">
+            <property name="column-spacing">15</property>
+            <property name="row-spacing">10</property>
+
+            <!-- Baris 1: Username -->
+            <child>
+              <object class="GtkLabel">
+                <property name="label">Username</property>
+                <property name="halign">start</property>
+                <layout>
+                  <property name="column">0</property>
+                  <property name="row">0</property>
+                </layout>
+              </object>
+            </child>
+            <child>
+              <object class="GtkEntry" id="entry_user">
+                <property name="placeholder-text">Masukkan username...</property>
+                <property name="width-request">250</property>
+                <layout>
+                  <property name="column">1</property>
+                  <property name="row">0</property>
+                </layout>
+              </object>
+            </child>
+
+            <!-- Baris 2: Password -->
+            <child>
+              <object class="GtkLabel">
+                <property name="label">Password</property>
+                <property name="halign">start</property>
+                <layout>
+                  <property name="column">0</property>
+                  <property name="row">1</property>
+                </layout>
+              </object>
+            </child>
+            <child>
+              <object class="GtkPasswordEntry" id="entry_pass">
+                <property name="show-peek-icon">true</property>
+                <property name="placeholder-text">Masukkan password...</property>
+                <layout>
+                  <property name="column">1</property>
+                  <property name="row">1</property>
+                </layout>
+              </object>
+            </child>
+          </object>
+        </child>
+
+        <child>
+          <object class="GtkBox" id="button_container">
+            <property name="orientation">horizontal</property>
+            <property name="spacing">10</property>
+            <!-- Menyejajarkan grup tombol ke kanan -->
+            <property name="halign">end</property>
+            <!-- Membuat Ok dan Cancel memiliki lebar yang sama -->
+            <property name="homogeneous">true</property>
+            
+            <child>
+              <object class="GtkButton" id="button_ok">
+                <property name="label">Ok</property>
+                <style>
+                  <class name="suggested-action"/>
+                </style>
+              </object>
+            </child>
+            <child>
+              <object class="GtkButton" id="button_cancel">
+                <property name="label">Cancel</property>
+              </object>
+            </child>
+          </object>
+        </child>
+      </object>
+    </child>
+  </object>
+</interface>
