@@ -1,9 +1,7 @@
 #include "types.h"
-#include "log.h"
 #include <errno.h>
 #include <math.h>
 #include <stdlib.h>
-#include <string.h>
 #include <time.h>
 
 uint64_status_t *get_monotonic_time_ns(const char *label) {
@@ -11,12 +9,17 @@ uint64_status_t *get_monotonic_time_ns(const char *label) {
   rs->status = FAILURE;
   rs->result = 0;
   struct timespec ts;
-  if (clock_gettime(CLOCK_MONOTONIC, &ts) == -1) {
-    LOG_ERROR("%s%s", label, strerror(errno));
-    return rs;
+  int gtm = clock_gettime(CLOCK_MONOTONIC, &ts);
+  while (gtm == -1 && errno == EINTR) {
+    gtm = clock_gettime(CLOCK_MONOTONIC, &ts);
   }
-  rs->result = (uint64_t)ts.tv_sec * 1000000000ULL + ts.tv_nsec;
-  rs->status = SUCCESS;
+  if (gtm == -1) {
+    rs->status = FAILURE;
+    rs->result = 0;
+  } else {
+    rs->result = (uint64_t)ts.tv_sec * 1000000000ULL + ts.tv_nsec;
+    rs->status = SUCCESS;
+  }
   return rs;
 }
 

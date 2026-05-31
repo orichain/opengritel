@@ -128,10 +128,10 @@ void *log_cleaner_thread(void *arg) {
         fprintf(stderr, "[LOG]: Log cleaner failed to get current_time.\n");
       }
     }
-    free(rs);
   } else {
     fprintf(stderr, "[LOG]: Log cleaner failed to start %s\n", strerror(errno));
   }
+  free(rs);
   return NULL;
 }
 
